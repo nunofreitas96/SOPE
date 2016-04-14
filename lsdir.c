@@ -1,5 +1,7 @@
 /* LISTAR FICHEIROS REGULARES E SUB-DIRECTÓRIOS DE UM DIRECTÓRIO */
 /* USO: listdir2 dirname */
+#include "lsdir.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,7 +11,7 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <time.h>
-int main(int argc, char *argv[]){
+int listdir(char* direct, char* file){
  DIR *dirp;
 struct dirent *direntp;
 struct stat stat_buf;
@@ -18,23 +20,23 @@ char name[200];
 //char access[200];
 int fd1;
 
-if (argc != 3){
+/*if (argc != 3){
 
  fprintf( stderr, "Usage: %s dir_name\n", argv[0]);
 
  exit(1);
- }
+ }*/
 //open directory
-if ((dirp = opendir( argv[1])) == NULL){
- perror(argv[1]);
+if ((dirp = opendir( direct)) == NULL){
+ perror(direct);
  exit(2);
  }
-fd1 = open(argv[2], O_WRONLY | O_CREAT , 0644);
+fd1 = open(file, O_WRONLY | O_CREAT , 0644);
 //Search for regulars
 while ((direntp = readdir( dirp)) != NULL){
 
 //name now has the name of the file
- sprintf(name,"%s/%s",argv[1],direntp->d_name);
+ sprintf(name,"%s/%s",direct,direntp->d_name);
  
 if (lstat(name, &stat_buf)==-1){
  perror("lstat ERROR");
@@ -55,7 +57,7 @@ else str = "other";
 
 
 if (fd1 == -1) {
- perror(argv[2]);
+ perror(file);
  close(fd1);
  return 3;
  } 
