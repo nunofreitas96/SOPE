@@ -58,7 +58,7 @@ else str = "other";
 if(S_ISDIR(stat_buf.st_mode)){
 	
 		
-		int return_value = listdir(name,file);
+		int return_value = listdir(direntp->d_name,file);
 		if(return_value != 0)
 			{
 				closedir(dirp);
