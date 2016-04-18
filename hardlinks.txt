@@ -1,0 +1,2 @@
+files.txt /home/nunofreitas/Sope/T/testfolder/files.txt 45 Sun-2016-04-17-23:23:08-PDT
+tester1 /home/nunofreitas/Sope/T/tester1 10 Sun-2016-04-17-21:32:36-PDT
